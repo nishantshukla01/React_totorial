@@ -6,6 +6,8 @@ import './App.css';
 import List from './List';
 import Incdec from './Incdec';
 import ApiImage from './Apiform';
+import DottedBox from './CSSStylesheet';
+import Box from './InlineCSS';
 
  class App extends React.Component {
   constructor(props) {
@@ -40,8 +42,9 @@ this.setState({
       </Container>
       </form>
       <List items={this.state.items}/>
-        <Incdec/>
-       <ApiImage/>
+        <Incdec/><ApiImage/>
+       <DottedBox/>
+       <Box/>
        </div>
     );
   }
