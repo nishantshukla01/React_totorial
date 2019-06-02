@@ -1,26 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
+// import ReactDom from 'react-dom';
+// import logo from './logo.svg';
+import { Button, Container, Row } from 'react-bootstrap';
 import './App.css';
+import List from './List';
+import Incdec from './Incdec';
+import ApiImage from './Apiform';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      term: '',
+      items: []
+    };
+  }
+onChange=(e)=>{
+  e.preventDefault();
+  this.setState({
+    term:e.target.value
+  });
 }
-
+onSubmit=(e)=>{
+e.preventDefault();
+this.setState({
+  term:'',
+  items:[...this.state.items,this.state.term]
+});
+}
+  render() {
+    return (
+      <div>
+      <form className='App' onSubmit={this.onSubmit}>
+      <Container>
+        <Row className="justify-content-md-center">
+        <input type='text' className='form-control col-sm-6' value={ this.state.term} onChange={this.onChange}/>
+        <Button type='submit' variant="outline-danger">Submit</Button>
+        </Row> 
+      </Container>
+      </form>
+      <List items={this.state.items}/>
+        <Incdec/>
+       <ApiImage/>
+       </div>
+    );
+  }
+}
 export default App;
